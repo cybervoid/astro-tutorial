@@ -17,3 +17,9 @@ import Social from './Social.astro';
   <Social platform="github" username="withastro" />
   <Social platform="youtube" username="astrodotbuild" />
 </footer>
+
+  <script>
+    document.querySelector('.hamburger')?.addEventListener('click', () => {
+      document.querySelector('.nav-links')?.classList.toggle('expanded');
+    });
+  </script>
