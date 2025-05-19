@@ -1,0 +1,48 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// Check if user is authenticated
+const isAuthenticated = Astro.cookies.has('authToken');
+
+// If not authenticated, redirect to login
+if (!isAuthenticated) {
+  return Astro.redirect('/auth/login');
+}
+---
+
+<Layout title="Dashboard">
+  <div class="container">
+    <sl-card class="card-overview">
+      <div slot="header">
+        <h2>Welcome to your Dashboard</h2>
+      </div>
+
+      <p>This is a protected page. You can only see this if you're logged in.</p>
+
+      <div slot="footer">
+        <sl-button variant="danger" onclick="handleLogout()">
+          Logout
+        </sl-button>
+      </div>
+    </sl-card>
+  </div>
+</Layout>
+
+<script>
+  function handleLogout() {
+    localStorage.removeItem('authToken');
+    window.location.href = '/auth/login';
+  }
+</script>
+
+<style>
+  .container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+
+  :global(.card-overview) {
+    --sl-spacing-medium: 1.5rem;
+  }
+</style> 

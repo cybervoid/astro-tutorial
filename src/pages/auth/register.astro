@@ -1,0 +1,26 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import RegisterForm from '../../components/auth/RegisterForm';
+---
+
+<Layout title="Register">
+  <div class="container">
+    <RegisterForm client:load />
+  </div>
+</Layout>
+
+<style>
+  .container {
+    max-width: 500px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+
+  :global(.card-overview) {
+    --sl-spacing-medium: 1.5rem;
+  }
+
+  :global(.mt-4) {
+    margin-top: 1rem;
+  }
+</style> 

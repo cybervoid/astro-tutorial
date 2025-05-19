@@ -5,6 +5,16 @@ import Header from "../components/Header.astro";
 import "../styles/global.css";
 
 const pageTitle = "Home Page";
+
+// Check if user is authenticated
+const isAuthenticated = Astro.cookies.has('authToken');
+
+// Redirect based on authentication status
+if (isAuthenticated) {
+	return Astro.redirect('/dashboard');
+} else {
+	return Astro.redirect('/auth/login');
+}
 ---
 
 <html lang="en">
