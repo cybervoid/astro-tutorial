@@ -80,7 +80,7 @@ export default function LoginForm() {
         </form>
 
         <div slot="footer">
-          Don't have an account? <a href="/auth/register">Register here</a>
+          Don't have an account? <a href="/auth/register">Register here now</a>
         </div>
       </sl-card>
     </div>
