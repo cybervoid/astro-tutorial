@@ -5,4 +5,13 @@ import preact from '@astrojs/preact';
 // https://astro.build/config
 export default defineConfig({
   integrations: [preact()],
+  vite: {
+    build: {
+      rollupOptions: {
+        output: {
+          assetFileNames: 'assets/[name][extname]'
+        }
+      }
+    }
+  }
 });
