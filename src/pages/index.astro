@@ -18,7 +18,9 @@ const pageTitle = "Home Page";
 	<body>
 		<Header />
 		<h1>{pageTitle}</h1>
-		Hello world
+		<div class="onboarding-container">
+			<button id="onboardingButton" class="onboarding-button">Take me to onboarding</button>
+		</div>
 		<Footer />
 		<script>
 			const hamburgerBtn = document.querySelector('.hamburger');
@@ -28,7 +30,52 @@ const pageTitle = "Home Page";
 					navLinks.classList.toggle('expanded');
 				});
 			}
-			// import "../scripts/menu.js";
+
+			const onboardingButton = document.getElementById('onboardingButton');
+			if (onboardingButton) {
+				onboardingButton.addEventListener('click', async () => {
+					try {
+						const response = await fetch('/api/onboarding', {
+							method: 'POST',
+							headers: {
+								'Content-Type': 'application/json',
+							}
+						});
+
+						if (!response.ok) {
+							throw new Error('Network response was not ok');
+						}
+
+						const data = await response.json();
+						if (data.url) {
+							window.location.href = data.url;
+						}
+					} catch (error) {
+						console.error('Error:', error);
+						alert('There was an error processing your request. Please try again.');
+					}
+				});
+			}
 		</script>
+		<style>
+			.onboarding-container {
+				display: flex;
+				justify-content: center;
+				margin: 2rem 0;
+			}
+			.onboarding-button {
+				padding: 1rem 2rem;
+				font-size: 1.1rem;
+				background-color: #007bff;
+				color: white;
+				border: none;
+				border-radius: 5px;
+				cursor: pointer;
+				transition: background-color 0.3s ease;
+			}
+			.onboarding-button:hover {
+				background-color: #0056b3;
+			}
+		</style>
 	</body>
 </html>
